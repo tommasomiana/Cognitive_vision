@@ -1,2 +1,2 @@
 # Cognitive_vision
-cognitive vision solutions of university's exercises 
+Python's files about some cognitive vision stuff. University exercises solutions.
