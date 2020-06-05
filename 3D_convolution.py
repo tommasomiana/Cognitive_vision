@@ -28,22 +28,11 @@ for t in range(oT):
             # kernel ==>                                      (oC, iC, kT, kH, kW)
 
             this_input = input[:, :, t:t+kT, row:row+kH, col:col+kW].unsqueeze(1)
-            # (n, 1,  iC, kH, kW)
+            # (n, 1,  iC, kT, kH, kW)
             this_kernel = kernel.unsqueeze(0)
-            # (1, oC, iC, kH, kW)
-
-            # this_input * this_kernel
-            #     (n, 1,  iC, kT, kH, kW)
-            #     (1, oC, iC, kT, kH, kW)
-            # ==> (n, oC, iC, kT, kH, kW)
-
-            # Summation over the last three axes
-            # np.sum(np.sum(np.sum(.., axis=-1), axis=-1), axis=-1)
-            # np.sum(.., axis=(-1, -2, -3))
-            # ==> (n, oC)
+            # (1, oC, iC, kT, kH, kW)
 
             out[:, :, t, row, col] = torch.sum(this_input * this_kernel, (-1, -2, -3, -4))
-            # out[:, :, t, row, col] ==> (n, oC)
 
 out1 = torch.conv3d(input, kernel, bias)
 for b in range(oC):
