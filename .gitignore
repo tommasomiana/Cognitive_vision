@@ -1,1 +1,6 @@
 .idea
+keypoints_detection.py
+keypoints_paintings_detection.py
+neural_transfer
+image_retrival
+descriptors
